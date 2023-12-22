@@ -1,0 +1,16 @@
+{
+    "arduino.useArduinoCli": true,
+    "arduino.additionalUrls": [
+        "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+    ],
+    "arduino.commandPath": "arduino-cli",
+    "arduino.path": "/opt/homebrew/bin",
+    "cSpell.words": [
+        "ARCADA",
+        "BUTTONMASK",
+        "Gameplay",
+        "HIGHSCORE",
+        "HIGHSCORES",
+        "leaderboard"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "sketch": "pong.ino",
+    "configuration": "cache=on,speed=200,opt=small,maxqspi=50,usbstack=arduino,debug=off",
+    "board": "adafruit:samd:adafruit_pygamer_m4",
+    "output": "out",
+    "programmer": "adafruit_jlink",
+    "port": "/dev/tty.usbmodem2101"
+}
