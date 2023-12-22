@@ -1,10 +1,7 @@
 #pragma once
 
 #include "globals.h"
-#include "audioPlayer.h"
-
-// Ball class for a pong game.
-// This is a simple class that has a position, velocity, and radius.
+#include "sounds/kick.h"
 
 class Ball {
     public:
@@ -34,24 +31,24 @@ class Ball {
                 dx = -dx;
                 x = wall - radius;
                 score += 1;
-                audio.play(KickSound);
+                game->audio->play(KickSound);
             }
 
             if (y <= top + this->radius) {
                 dy = -dy;
                 y = top + this->radius;
-                audio.play(KickSound);
+                game->audio->play(KickSound);
             }
 
             if (y >= bottom - radius) {
                 dy = -dy;
                 y = bottom - radius;
-                audio.play(KickSound);
+                game->audio->play(KickSound);
             }
         }
 
         void draw() {
-            g_canvas->fillCircle(x, y, radius, 0xFFFF);
+            game->canvas->fillCircle(x, y, radius, 0xFFFF);
         }
 };
 

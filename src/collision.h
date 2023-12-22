@@ -1,12 +1,13 @@
 #pragma once
 
-#include "globals.h"
-#include "ball.h"
-#include "paddle.h"
-#include "audioPlayer.h"
 #include <cmath>
 #include <algorithm>
 #include <limits>
+
+#include "globals.h"
+#include "ball.h"
+#include "paddle.h"
+#include "sounds/tom.h"
 
 enum class PaddleSide
 {
@@ -18,52 +19,6 @@ enum class PaddleSide
 float clamp(float value, float min, float max)
 {
     return std::max(min, std::min(max, value));
-}
-
-void checkNaN(Ball& ball, const char *msg, float ballNextX, float closestX, float distanceX, float distanceSquared, float distance, float normalX, float ballNextY, float closestY, float distanceY, float normalY)
-{
-    if (isnan(ball.y))
-    {
-        Serial.print("NaN: ");
-        Serial.println(msg);
-        Serial.println("Ball y is NAN");
-        Serial.print("ballNextY: ");
-        Serial.println(ballNextY);
-        Serial.print("closestY: ");
-        Serial.println(closestY);
-        Serial.print("distanceY: ");
-        Serial.println(distanceY);
-        Serial.print("distanceSquared: ");
-        Serial.println(distanceSquared);
-        Serial.print("distance: ");
-        Serial.println(distance);
-        Serial.print("normalY: ");
-        Serial.println(normalY);
-        while (1)
-            delay(10);
-    }
-
-    if (isnan(ball.x))
-    {
-        Serial.print("NaN: ");
-        Serial.println(msg);
-        Serial.println("Ball x is NAN");
-        Serial.print("ballNextX: ");
-        Serial.println(ballNextX);
-        Serial.print("closestX: ");
-        Serial.println(closestX);
-        Serial.print("distanceX: ");
-        Serial.println(distanceX);
-        Serial.print("distanceSquared: ");
-        Serial.println(distanceSquared);
-        Serial.print("distance: ");
-        Serial.println(distance);
-        Serial.print("normalX: ");
-        Serial.println(normalX);
-
-        while (1)
-            delay(10);
-    }
 }
 
 class Collision
@@ -129,9 +84,7 @@ public:
             ball.x += normalX * overlap;
             ball.y += normalY * overlap;
 
-            checkNaN(ball, "collision update", ballNextX, closestX, distanceX, distanceSquared, distance, normalX, ballNextY, closestY, distanceY, normalY);
-
-            audio.play(TomSound);
+            game->audio->play(TomSound);
 
             // Handle collisions with the top and bottom of the paddle
             if (closestX > paddle.x && closestX < paddle.x + paddle.width)

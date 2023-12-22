@@ -1,10 +1,10 @@
 #pragma once
 
+#include <gamedev.h>
+
 #include "src/state.h"
 #include "src/score.h"
 #include "src/walls.h"
-#include "src/text.h"
-#include "src/scene.h"
 
 
 class GameoverScene : public Scene {

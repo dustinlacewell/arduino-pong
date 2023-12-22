@@ -1,13 +1,14 @@
+#include <gamedev.h>
+
 #include "gameoverScene.h"
 #include "gameplayScene.h"
-
-#include "src/buttons.h"
+#include "src/sounds/lose.h"
 
 
 void GameoverScene::setup(void)
 {
-    audio.play(LoseSound);
-    this->leaderboardPos = leaderboard.submitScore(score);
+    game->audio->play(LoseSound);
+    this->leaderboardPos = game->leaderboard->submitScore(score);
 }
 
 void GameoverScene::loop(unsigned long dt)
@@ -19,16 +20,16 @@ void GameoverScene::loop(unsigned long dt)
         // say "New Highscore!" centered, towards the top, using arcada api
         int x = g_width / 2;
         int y = g_height / 4;
-        drawCenteredText("New Highscore!", 1, x, y);
+        drawCenteredText(game->canvas, "New Highscore!", 1, x, y);
     }
 
     if (
-        buttons.pressed(ARCADA_BUTTONMASK_A) ||
-        buttons.pressed(ARCADA_BUTTONMASK_B) ||
-        buttons.pressed(ARCADA_BUTTONMASK_START)
+        game->buttons->pressed(ARCADA_BUTTONMASK_A) ||
+        game->buttons->pressed(ARCADA_BUTTONMASK_B) ||
+        game->buttons->pressed(ARCADA_BUTTONMASK_START)
     )
     {
         reset();
-        switchTo(new GameplayScene());
+        game->switchTo(new GameplayScene());
     }
 }

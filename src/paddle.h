@@ -34,8 +34,8 @@ public:
         // joystick inputs range from -512 to 512
         // we want to map this to the screen size
         // but account for the size of the paddle
-        int padY = arcada.readJoystickY();
-        int padX = arcada.readJoystickX();
+        int padY = game->arcada.readJoystickY();
+        int padX = game->arcada.readJoystickX();
         // Ensure that the paddle stays within the screen bounds
         this->y = map(padY, -512, 512, 0, g_height - height);
         this->wiggle = map(padX, -512, 512, 0, wiggleRoom);
@@ -47,11 +47,11 @@ public:
         // draw the paddle
         // but clip it at `top` and `bottom`
         if (this->y < top) {
-            g_canvas->fillRect(this->x, top, this->width, this->height - (top - this->y), 0xFFFF);
+            game->canvas->fillRect(this->x, top, this->width, this->height - (top - this->y), 0xFFFF);
         } else if (this->y + this->height > bottom) {
-            g_canvas->fillRect(this->x, this->y, this->width, this->height - ((this->y + this->height) - bottom), 0xFFFF);
+            game->canvas->fillRect(this->x, this->y, this->width, this->height - ((this->y + this->height) - bottom), 0xFFFF);
         } else {
-            g_canvas->fillRect(this->x, this->y, this->width, this->height, 0xFFFF);
+            game->canvas->fillRect(this->x, this->y, this->width, this->height, 0xFFFF);
         }
     }
 };

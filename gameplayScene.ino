@@ -10,7 +10,7 @@ void GameplayScene::loop(unsigned long dt)
 
     if (ball.x < -100)
     {
-        switchTo(new GameoverScene());
+        game->switchTo(new GameoverScene());
     }
 
     collision.checkAndResolveCollision(ball, paddle, PaddleSide::LEFT);

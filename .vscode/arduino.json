@@ -4,5 +4,5 @@
     "board": "adafruit:samd:adafruit_pygamer_m4",
     "output": "out",
     "programmer": "adafruit_jlink",
-    "port": "/dev/tty.usbmodem2101"
+    "port": "/dev/tty.usbmodem1101"
 }
